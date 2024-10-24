@@ -249,7 +249,7 @@ Perform the following steps on the Wazuh server to alert for changes in the endp
         </integration>
       </ossec_config>
 
-
+note:
 
       The free VirusTotal API rate limits requests to four per minute. If you have a premium VirusTotal API key, with a high frequency of queries allowed, you can add more rules besides these two. You can also configure Wazuh to monitor more directories.
 
@@ -530,7 +530,7 @@ Perform the following steps on the Wazuh server to configure the VirusTotal inte
         </integration>
       </ossec_config>
 
-   .. note::
+note:
 
       The free VirusTotal API rate limits requests to four per minute. If you have a premium VirusTotal API key, with a high frequency of queries allowed, you can add more rules besides these two. You can configure Wazuh to monitor more directories besides ``C:\Users\<USER_NAME>\Downloads``.
 
