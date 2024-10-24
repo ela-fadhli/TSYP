@@ -120,8 +120,6 @@ The Wazuh dashboard is a powerful tool for monitoring and managing security even
 ---
 
 ## VirusTotal Integration
-.. meta::
-   :description: In this PoC, you scan a directory for changes querying the VirusTotal API for threat results.
 
 Detecting and removing malware using VirusTotal integration
 ===========================================================
@@ -134,16 +132,6 @@ You need a `VirusTotal API key <https://developers.virustotal.com/reference/gett
 
 For more information on this integration, check the :doc:`VirusTotal integration </user-manual/capabilities/malware-detection/virus-total-integration>` section of the documentation.
 
-Infrastructure
---------------
-
-+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Endpoint      | Description                                                                                                                                                          |
-+===============+======================================================================================================================================================================+
-| Ubuntu 22.04  | This is the Linux endpoint where you download a malicious file. Wazuh triggers an active response script to remove the file once VirusTotal flags it as malicious.   |
-+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Windows 11    | This is the Windows endpoint where you download a malicious file. Wazuh triggers an active response script to remove the file once VirusTotal flags it as malicious. |
-+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Configuration for the Ubuntu endpoint
 -------------------------------------
@@ -151,7 +139,7 @@ Configuration for the Ubuntu endpoint
 Configure your environment as follows to test the use case for the Ubuntu endpoint. These steps work for other Linux distributions as well.
 
 Ubuntu endpoint
-^^^^^^^^^^^^^^^
+ 
 
 Perform the following steps to configure Wazuh to monitor near real-time changes in the ``/root`` directory of the Ubuntu endpoint. These steps also install the necessary packages and create the active response script that removes malicious files.
 
@@ -226,7 +214,7 @@ Perform the following steps to configure Wazuh to monitor near real-time changes
       $ sudo systemctl restart wazuh-agent
 
 Wazuh server
-^^^^^^^^^^^^
+ 
 
 Perform the following steps on the Wazuh server to alert for changes in the endpoint directory and enable the VirusTotal integration. These steps also enable and trigger the active response script whenever a suspicious file is detected.
 
@@ -334,7 +322,7 @@ Configuration for the Windows endpoint
 --------------------------------------
 
 Windows endpoint
-^^^^^^^^^^^^^^^^
+ 
 
 Perform the following steps to configure Wazuh to monitor near real-time changes in the ``/Downloads`` directory. These steps also install the necessary packages and create the active response script to remove malicious files.
 
@@ -527,7 +515,7 @@ Perform the following steps to configure Wazuh to monitor near real-time changes
       > Restart-Service -Name wazuh
 
 Wazuh server
-^^^^^^^^^^^^
+ 
 
 Perform the following steps on the Wazuh server to configure the VirusTotal integration. These steps also enable and trigger the active response script whenever a suspicious file is detected.
 
