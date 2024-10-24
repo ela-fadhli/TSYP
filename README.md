@@ -196,5 +196,5 @@ Cyber Shield is developed and maintained by [Your Name/Company]. We would like t
 
 For any inquiries or support, please reach out to us via:
 
-- Email: support@cybershield.com
-- GitHub Issues: [https://github.com/username/cyber-shield/issues](https://github.com/username/cyber-shield/issues)
+- Email: enicarthage.ieee.cs@gmail.com
+- GitHub Issues: [https://github.com/IEEE_CS_ENICAR/cyber-shield/issues](https://github.com/IEEE_CS_ENICAR/cyber-shield/issues)
