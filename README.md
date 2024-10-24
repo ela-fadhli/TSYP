@@ -1,6 +1,6 @@
 # CYBER SHIELD
 
-**Cyber Shield** is an advanced cybersecurity solution designed to mitigate a wide range of cyber threats by integrating cutting-edge tools like **Wazuh**, **VirusTotal**, and AI-driven technologies. The platform leverages Wazuh to monitor and manage conventional cyberattacks, gathering critical log data for enhanced threat detection and response. Additionally, it incorporates a sophisticated AI model to analyze and address specific attack patterns, providing an extra layer of defense against emerging threats. Cyber Shield offers a comprehensive, automated approach to cybersecurity, ensuring real-time protection and proactive threat mitigation.
+**Cyber Shield** is an advanced cybersecurity solution designed to mitigate a wide range of cyber threats by integrating cutting-edge tools like **Wazuh**, **VirusTotal**, and AI-driven technologies. The platform leverages Wazuh for monitoring and managing cyberattacks, gathering critical log data for enhanced threat detection and response. Additionally, it incorporates a sophisticated AI model to analyze and address specific attack patterns, providing an extra layer of defense against emerging threats. Cyber Shield offers a comprehensive, automated approach to cybersecurity, ensuring real-time protection and proactive threat mitigation.
 
 ---
 
@@ -12,6 +12,7 @@
 - [Wazuh Usage](#wazuh-usage)
   - [Monitoring and Alerts](#monitoring-and-alerts)
   - [Log Collection](#log-collection)
+  - [Wazuh Dashboard Configuration](#wazuh-dashboard-configuration)
 - [VirusTotal Integration](#virustotal-integration)
   - [Setup on Ubuntu](#setup-on-ubuntu)
   - [Setup on Windows](#setup-on-windows)
@@ -70,7 +71,6 @@ To install Wazuh on Windows:
    ```cmd
    net start WazuhSvc
    ```
-
 5. **Verify the connection** to the Wazuh manager by checking the logs.
 
 ---
@@ -79,25 +79,43 @@ To install Wazuh on Windows:
 
 ### Monitoring and Alerts
 
-Wazuh continuously monitors your system for potential threats and anomalies by analyzing log data. It generates real-time alerts based on predefined rules, which can be customized to fit the security needs of your environment.
+Wazuh continuously monitors your system for potential threats and anomalies by analyzing log data. It generates real-time alerts based on predefined rules, which can be customized to fit your security needs.
 
 - **Access the Wazuh dashboard** by navigating to:
   ```bash
   http://localhost:5601
   ```
-  Here, you can view all alerts, monitor the system status, and configure custom alerting rules.
+  Here, you can view alerts, monitor system status, and configure custom alerting rules.
   
-- Wazuh also integrates with **Elasticsearch** and **Kibana** to provide advanced log analysis and visualization.
+- Wazuh integrates with **Elasticsearch** and **Kibana** for advanced log analysis and visualization.
 
 ### Log Collection
 
-Wazuh collects logs from various sources, including operating systems, applications, and network devices. The logs are then analyzed using predefined rules to detect suspicious activity.
+Wazuh collects logs from various sources, including operating systems, applications, and network devices. The logs are analyzed using predefined rules to detect suspicious activity.
 
 - **Supported log types**: system logs, firewall logs, application logs, and more.
   
 - Logs are stored in the Wazuh manager and can be visualized through the **Kibana** interface.
 
-- **Custom log collection**: You can configure Wazuh to collect specific logs by editing the `ossec.conf` file and defining the paths for the logs you want to monitor.
+- **Custom log collection**: Configure Wazuh to collect specific logs by editing the `ossec.conf` file and defining the paths for the logs you want to monitor.
+
+### Wazuh Dashboard Configuration
+
+The Wazuh dashboard is a powerful tool for monitoring and managing security events. Here’s how to configure it effectively:
+
+1. **Access the Dashboard**: Open your web browser and navigate to the dashboard URL (`http://localhost:5601`).
+
+2. **Initial Setup**: If this is your first time accessing the dashboard, complete the initial setup wizard to connect it to your Wazuh manager and Elasticsearch.
+
+3. **Customize Alerts**:
+   - Go to the **Management** tab.
+   - Navigate to **Rules** to customize existing rules or add new ones based on your environment's needs.
+
+4. **Dashboards and Visualizations**:
+   - Explore predefined dashboards for quick insights.
+   - Create custom visualizations using the **Visualize** tab to focus on specific data points relevant to your organization.
+
+5. **User Management**: Set up user roles and permissions under the **Management** section to control access to the dashboard.
 
 ---
 
@@ -157,7 +175,7 @@ The AI model can be tuned to detect additional or specific attack patterns. You 
 1. **Edit the configuration** located in the `config/ai_model.yaml` file to adjust thresholds or add new attack signatures.
    
 2. **Retrain the AI model** if necessary:
-   - If you've added new attack signatures, you can retrain the model using the provided dataset or your own custom dataset.
+   - If you've added new attack signatures, retrain the model using the provided dataset or your own custom dataset.
 
 3. **Deploy the updated model** to your Wazuh server for real-time analysis.
 
@@ -185,7 +203,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Cyber Shield is developed and maintained by [Your Name/Company]. We would like to acknowledge the following tools and libraries used in this project:
 
-- **Wazuh** - For providing the core monitoring and alerting capabilities.
+- **Wazuh** - For providing core monitoring and alerting capabilities.
 - **VirusTotal** - For file and URL threat detection.
 - **Elasticsearch & Kibana** - For log analysis and visualization.
 - Contributors: @username1, @username2
