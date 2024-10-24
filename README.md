@@ -143,22 +143,22 @@ Ubuntu endpoint
 
 Perform the following steps to configure Wazuh to monitor near real-time changes in the ``/root`` directory of the Ubuntu endpoint. These steps also install the necessary packages and create the active response script that removes malicious files.
 
-#. Search for the ``<syscheck>`` block in the Wazuh agent configuration file ``/var/ossec/etc/ossec.conf``. Make sure that ``<disabled>`` is set to ``no``. This enables the Wazuh FIM to monitor for directory changes.
+ Search for the ``<syscheck>`` block in the Wazuh agent configuration file ``/var/ossec/etc/ossec.conf``. Make sure that ``<disabled>`` is set to ``no``. This enables the Wazuh FIM to monitor for directory changes.
 
-#. Add an entry within the ``<syscheck>`` block to configure a directory to be monitored in near real-time. In this case, you are monitoring the ``/root`` directory:
+ Add an entry within the ``<syscheck>`` block to configure a directory to be monitored in near real-time. In this case, you are monitoring the ``/root`` directory:
 
    .. code-block:: xml
 
       <directories realtime="yes">/root</directories>
 
-#. Install ``jq``, a utility that processes JSON input from the active response script.
+ Install ``jq``, a utility that processes JSON input from the active response script.
 
    .. code-block:: console
 
       $ sudo apt update
       $ sudo apt -y install jq
 
-#. Create the ``/var/ossec/active-response/bin/remove-threat.sh`` active response script to remove malicious files from the endpoint:
+ Create the ``/var/ossec/active-response/bin/remove-threat.sh`` active response script to remove malicious files from the endpoint:
 
    .. code-block:: bash
 
@@ -200,14 +200,14 @@ Perform the following steps to configure Wazuh to monitor near real-time changes
 
       exit 0;
 
-#. Change the ``/var/ossec/active-response/bin/remove-threat.sh`` file ownership, and permissions:
+ Change the ``/var/ossec/active-response/bin/remove-threat.sh`` file ownership, and permissions:
 
    .. code-block:: console
 
       $ sudo chmod 750 /var/ossec/active-response/bin/remove-threat.sh
       $ sudo chown root:wazuh /var/ossec/active-response/bin/remove-threat.sh
 
-#. Restart the Wazuh agent to apply the changes:
+ Restart the Wazuh agent to apply the changes:
 
    .. code-block:: console
 
@@ -218,7 +218,7 @@ Wazuh server
 
 Perform the following steps on the Wazuh server to alert for changes in the endpoint directory and enable the VirusTotal integration. These steps also enable and trigger the active response script whenever a suspicious file is detected.
 
-#. Add the following rules to the ``/var/ossec/etc/rules/local_rules.xml`` file on the Wazuh server. These rules alert about changes in the ``/root`` directory that are detected by FIM scans:
+ Add the following rules to the ``/var/ossec/etc/rules/local_rules.xml`` file on the Wazuh server. These rules alert about changes in the ``/root`` directory that are detected by FIM scans:
 
    .. code-block:: xml
 
@@ -236,7 +236,7 @@ Perform the following steps on the Wazuh server to alert for changes in the endp
           </rule>
       </group>
 
-#. Add the following configuration to the Wazuh server ``/var/ossec/etc/ossec.conf`` file to enable the Virustotal integration. Replace ``<YOUR_VIRUS_TOTAL_API_KEY>`` with your `VirusTotal API key <https://developers.virustotal.com/reference>`__. This allows to trigger a VirusTotal query whenever any of the rules ``100200`` and ``100201`` are triggered:
+ Add the following configuration to the Wazuh server ``/var/ossec/etc/ossec.conf`` file to enable the Virustotal integration. Replace ``<YOUR_VIRUS_TOTAL_API_KEY>`` with your `VirusTotal API key <https://developers.virustotal.com/reference>`__. This allows to trigger a VirusTotal query whenever any of the rules ``100200`` and ``100201`` are triggered:
 
    .. code-block:: xml
 
@@ -253,7 +253,7 @@ Perform the following steps on the Wazuh server to alert for changes in the endp
 
       The free VirusTotal API rate limits requests to four per minute. If you have a premium VirusTotal API key, with a high frequency of queries allowed, you can add more rules besides these two. You can also configure Wazuh to monitor more directories.
 
-#. Append the following blocks to the Wazuh server ``/var/ossec/etc/ossec.conf`` file. This enables Active Response and triggers the ``remove-threat.sh`` script when VirusTotal flags a file as malicious:
+ Append the following blocks to the Wazuh server ``/var/ossec/etc/ossec.conf`` file. This enables Active Response and triggers the ``remove-threat.sh`` script when VirusTotal flags a file as malicious:
 
    .. code-block:: xml
 
@@ -272,7 +272,7 @@ Perform the following steps on the Wazuh server to alert for changes in the endp
         </active-response>
       </ossec_config>
 
-#. Add the following rules to the Wazuh server ``/var/ossec/etc/rules/local_rules.xml`` file to alert about the Active Response results:
+ Add the following rules to the Wazuh server ``/var/ossec/etc/rules/local_rules.xml`` file to alert about the Active Response results:
 
    .. code-block:: xml
 
@@ -290,7 +290,7 @@ Perform the following steps on the Wazuh server to alert for changes in the endp
         </rule>
       </group>
 
-#. Restart the Wazuh manager to apply the configuration changes:
+ Restart the Wazuh manager to apply the configuration changes:
 
    .. code-block:: console
 
@@ -299,7 +299,7 @@ Perform the following steps on the Wazuh server to alert for changes in the endp
 Attack emulation
 ----------------
 
-#. Download an EICAR test file to the ``/root`` directory on the Ubuntu endpoint:
+ Download an EICAR test file to the ``/root`` directory on the Ubuntu endpoint:
 
    .. code-block:: console
 
@@ -326,22 +326,22 @@ Windows endpoint
 
 Perform the following steps to configure Wazuh to monitor near real-time changes in the ``/Downloads`` directory. These steps also install the necessary packages and create the active response script to remove malicious files.
 
-#. Search for the ``<syscheck>`` block in the Wazuh agent ``C:\Program Files (x86)\ossec-agent\ossec.conf`` file. Make sure that ``<disabled>`` is set to ``no``. This enables the Wazuh FIM module to monitor for directory changes.
+ Search for the ``<syscheck>`` block in the Wazuh agent ``C:\Program Files (x86)\ossec-agent\ossec.conf`` file. Make sure that ``<disabled>`` is set to ``no``. This enables the Wazuh FIM module to monitor for directory changes.
 
-#. Add an entry within the ``<syscheck>`` block to configure a directory to be monitored in near real-time. In this use case, you configure Wazuh to monitor the ``C:\Users\<USER_NAME>\Downloads`` directory. Replace the ``<USER_NAME>`` variable with the appropriate user name:
+ Add an entry within the ``<syscheck>`` block to configure a directory to be monitored in near real-time. In this use case, you configure Wazuh to monitor the ``C:\Users\<USER_NAME>\Downloads`` directory. Replace the ``<USER_NAME>`` variable with the appropriate user name:
 
    .. code-block:: xml
 
       <directories realtime="yes">C:\Users\<USER_NAME>\Downloads</directories>
 
-#. Download the Python executable installer from the `official Python website <https://www.python.org/downloads/windows/>`__.
+ Download the Python executable installer from the `official Python website <https://www.python.org/downloads/windows/>`__.
 
-#. Run the Python installer once downloaded. Make sure to check the following boxes:
+ Run the Python installer once downloaded. Make sure to check the following boxes:
 
    -  ``Install launcher for all users``
    -  ``Add Python 3.X to PATH`` (This places the interpreter in the execution path)
 
-#. Once Python completes the installation process, open an administrator PowerShell terminal and use ``pip`` to install PyInstaller:
+ Once Python completes the installation process, open an administrator PowerShell terminal and use ``pip`` to install PyInstaller:
 
    .. code-block:: powershell
 
@@ -350,7 +350,7 @@ Perform the following steps to configure Wazuh to monitor near real-time changes
 
    You use Pyinstaller here to convert the active response Python script into an executable application that can run on a Windows endpoint.
 
-#. Create an active response script ``remove-threat.py`` to remove a file from the Windows endpoint:
+ Create an active response script ``remove-threat.py`` to remove a file from the Windows endpoint:
 
    .. code-block:: bash
 
@@ -498,7 +498,7 @@ Perform the following steps to configure Wazuh to monitor near real-time changes
       if __name__ == "__main__":
           main(sys.argv)
 
-#. Convert the active response Python script ``remove-threat.py`` to a Windows executable application. Run the following PowerShell command as an administrator to create the executable:
+ Convert the active response Python script ``remove-threat.py`` to a Windows executable application. Run the following PowerShell command as an administrator to create the executable:
 
    .. code-block:: powershell
 
@@ -506,9 +506,9 @@ Perform the following steps to configure Wazuh to monitor near real-time changes
 
    Take note of the path where ``pyinstaller`` created ``remove-threat.exe``.
 
-#. Move the executable file ``remove-threat.exe`` to the ``C:\Program Files (x86)\ossec-agent\active-response\bin`` directory.
+ Move the executable file ``remove-threat.exe`` to the ``C:\Program Files (x86)\ossec-agent\active-response\bin`` directory.
 
-#. Restart the Wazuh agent to apply the changes. Run the following PowerShell command as an administrator:
+ Restart the Wazuh agent to apply the changes. Run the following PowerShell command as an administrator:
 
    .. code-block:: powershell
 
@@ -519,7 +519,7 @@ Wazuh server
 
 Perform the following steps on the Wazuh server to configure the VirusTotal integration. These steps also enable and trigger the active response script whenever a suspicious file is detected.
 
-#. Add the following configuration to the ``/var/ossec/etc/ossec.conf`` file on the Wazuh server to enable the VirusTotal integration. Replace ``<YOUR_VIRUS_TOTAL_API_KEY>`` with your `VirusTotal API key <https://developers.virustotal.com/reference>`__. This allows to trigger a VirusTotal query whenever any of the rules in the FIM ``syscheck`` group are triggered:
+ Add the following configuration to the ``/var/ossec/etc/ossec.conf`` file on the Wazuh server to enable the VirusTotal integration. Replace ``<YOUR_VIRUS_TOTAL_API_KEY>`` with your `VirusTotal API key <https://developers.virustotal.com/reference>`__. This allows to trigger a VirusTotal query whenever any of the rules in the FIM ``syscheck`` group are triggered:
 
    .. code-block:: xml
 
@@ -536,7 +536,7 @@ Perform the following steps on the Wazuh server to configure the VirusTotal inte
 
       The free VirusTotal API rate limits requests to four per minute. If you have a premium VirusTotal API key, with a high frequency of queries allowed, you can add more rules besides these two. You can configure Wazuh to monitor more directories besides ``C:\Users\<USER_NAME>\Downloads``.
 
-#. Append the following blocks to the Wazuh server ``/var/ossec/etc/ossec.conf`` file. This enables Active Response and trigger the ``remove-threat.exe`` executable when the VirusTotal query returns positive matches for threats:
+ Append the following blocks to the Wazuh server ``/var/ossec/etc/ossec.conf`` file. This enables Active Response and trigger the ``remove-threat.exe`` executable when the VirusTotal query returns positive matches for threats:
 
    .. code-block:: xml
 
@@ -555,7 +555,7 @@ Perform the following steps on the Wazuh server to configure the VirusTotal inte
         </active-response>
       </ossec_config>
 
-#. Add the following rules to the Wazuh server ``/var/ossec/etc/rules/local_rules.xml`` file to alert about the Active Response results.
+ Add the following rules to the Wazuh server ``/var/ossec/etc/rules/local_rules.xml`` file to alert about the Active Response results.
 
    .. code-block:: xml
 
@@ -573,7 +573,7 @@ Perform the following steps on the Wazuh server to configure the VirusTotal inte
         </rule>
       </group>
 
-#. Restart the Wazuh manager to apply the configuration changes:
+ Restart the Wazuh manager to apply the configuration changes:
 
    .. code-block:: console
 
@@ -582,13 +582,13 @@ Perform the following steps on the Wazuh server to configure the VirusTotal inte
 Attack emulation
 ----------------
 
-#. Follow the next steps to temporarily turn off real-time Microsoft Defender antivirus protection in Windows Security:
+ Follow the next steps to temporarily turn off real-time Microsoft Defender antivirus protection in Windows Security:
 
-   #. Click on the **Start** menu and type ``Windows Security`` to search for that app.
-   #. Select the **Windows Security app** from results, go to **Virus & threat protection**, and under **Virus & threat protection settings** select **Manage settings**.
-   #. Switch **Real-time protection** to **Off**.
+    Click on the **Start** menu and type ``Windows Security`` to search for that app.
+    Select the **Windows Security app** from results, go to **Virus & threat protection**, and under **Virus & threat protection settings** select **Manage settings**.
+    Switch **Real-time protection** to **Off**.
 
-#. Download an `EICAR test <https://secure.eicar.org/eicar.com.txt>`__ file to the ``C:\Users\<USER_NAME>\Downloads`` directory on the Windows endpoint.
+ Download an `EICAR test <https://secure.eicar.org/eicar.com.txt>`__ file to the ``C:\Users\<USER_NAME>\Downloads`` directory on the Windows endpoint.
 
    .. code-block:: powershell
 
