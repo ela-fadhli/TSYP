@@ -7,8 +7,6 @@
 ## Table of Contents
 - [Infrastructure Setup](#infrastructure-setup)
   - [Installation of Wazuh](#installation-of-wazuh)
-    - [Installation on Ubuntu](#installation-on-ubuntu)
-    - [Installation on Windows](#installation-on-windows)
 - [Wazuh Usage](#wazuh-usage)
   - [Monitoring and Alerts](#monitoring-and-alerts)
   - [Log Collection](#log-collection)
